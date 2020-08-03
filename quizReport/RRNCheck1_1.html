@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>주민등록번호 유효성 검사</title>
+    <script>
+        function autoMove(inputText) {
+            if(inputText.value.length == 6){
+                document.getElementById("back").focus();
+            }
+        }
+    </script>
+</head>
+<body style = "text-align: center">
+<h1>주민등록번호를 입력해주세요.</h1>
+<h2>Input Your Resident Registration Number(RRN)</h2>
+<form action = "RRNCheck1_2.php" method = "post">
+<input type = "text" id = "front" name = "frontNumber" onkeyup = "autoMove(this)" autocomplete="off"> -
+<input type = "text" id = "back" name = "backNumber" autocomplete="off">
+<input type = "submit" value = "확인">
+</form>
+</body>
+</html>

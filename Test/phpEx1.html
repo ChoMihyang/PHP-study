@@ -1,0 +1,18 @@
+<!--fullTag(권장)-->
+<?php
+    echo "hello world 1";
+?>
+
+이 문장은 skip됩니다. 왜냐하면 php엔진은 전체 소스코드 해석 시
+php tag가 선언된 문장들만 선택하기 때문입니다.
+
+<!--shortTag-->
+<?
+echo "hello world2";
+$outputType = "hello world3";
+?>
+
+<!--echoTag(출력용)-->
+<?=
+$outputType;
+?>
