@@ -70,134 +70,28 @@ if ($total_page < $end_page) $end_page = $total_page;
 <head>
     <meta charset="UTF-8">
     <title>글 목록보기</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: #dbe9b7;
-        }
-
-        #listBox {
-            width: 800px;
-            height: 790px;
-            margin: 80px auto;
-            padding: 20px;
-            background-color: #fdfdf6;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, .4);
-            font-family: 'Jua', sans-serif;
-        }
-
-        h1 {
-            border-bottom: 1px solid #ababab;
-            padding: 10px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-        }
-
-        table {
-            width: 100%;
-        }
-
-        th {
-            font-size: 19px;
-        }
-
-        td {
-            text-align: center;
-            height: 50px;
-            font-size: 18px;
-        }
-
-        a {
-            text-decoration: none;
-            color: black;
-            line-height: 30px;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        #ctrl {
-            margin-top: 15px;
-            float: right;
-        }
-
-        #white {
-            border-radius: 3px;
-            padding: 4px 10px;
-            border: 1px solid #b8b2a6;
-            background-color: white;
-            cursor: pointer;
-        }
-
-        #white:hover {
-            background-color: #e8e4e1;
-        }
-
-        .button {
-            border-radius: 3px;
-            padding: 5px 10px;
-            font-size: 18px;
-            font-family: 'Jua', sans-serif;
-            cursor: pointer;
-        }
-
-        .brown {
-            background-color: #b8b2a6;
-            border: 1px solid #b8b2a6;
-        }
-
-        .brown:hover {
-            background-color: #b9ac92;
-        }
-
-        .all {
-            background-color: white;
-            border: 1px solid #b8b2a6;
-        }
-
-        .all:hover {
-            background-color: #e8e4e1;
-        }
-
-        #pagination {
-            margin: 15px auto;
-        }
-
-        .list {
-            display: inline-block;
-            width: 30px;
-            height: 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            color: black;
-            text-align: center;
-        }
-
-        .list:hover {
-            color: white;
-            background-color: #596e79;
-        }
-
-        #search {
-            text-align: center;
-        }
-
-        input[name=keyword], select {
-            height: 25px;
-            border-radius: 4px;
-            border: 1px solid #ababab;
-        }
-    </style>
+    <link rel="stylesheet" href="list.css">
 </head>
 <body>
+<!------------------------------------------ 로그인 화면 ----------------------------------------------->
+<form action="login_process.php" method="post" autocomplete="off">
+    <div id="loginBox">
+        <div><h1>로그인</h1></div>
+        <div id="userInfo">
+            <div class="row">
+                <div class="head">ID</div>
+                <div><input type="text" name="id"></div>
+            </div>
+            <div class="row">
+                <div class="head">PASSWORD</div>
+                <div><input type="password" name="password"></div>
+            </div>
+        </div>
+        <div id="loginBtn"><input type="submit" id="login" value="로그인하기"></div>
+    </div>
+</form>
+<!-------------------------------------------- 세션 처리 ------------------------------------------------>
+
 <?php
 $mysql = "SELECT * FROM mybulletin WHERE board_pid = 0";
 $mysql = ($searchMode == true ? $mysql . " AND {$fieldSet} " : $mysql);

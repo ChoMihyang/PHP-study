@@ -1,5 +1,5 @@
 <?php
-    require_once ('db_conf.php');
+require_once ('db_conf.php');
 
 // 아이디, 패스워드 유효성 확인
 $mysql = "SELECT * FROM user_info WHERE id = '{$_POST['id']}' AND password = '{$_POST['password']}'";
