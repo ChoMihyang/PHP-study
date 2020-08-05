@@ -1,3 +1,5 @@
+<?php session_start();?>
+
 <!-------------------------------------- 검색 기능 초기 설정 -------------------------------------------->
 <?php
 require_once('db_conf.php');
@@ -70,14 +72,26 @@ if ($total_page < $end_page) $end_page = $total_page;
 <head>
     <meta charset="UTF-8">
     <title>글 목록보기</title>
-    <link rel="stylesheet" href="list.css">
+    <link rel="stylesheet" href="css/list.css">
 </head>
 <body>
+<!---------------------------------------- 로그아웃 처리 ------------------------------------------------>
+<?php
+// 로그아웃 버튼 클릭 시 $_POST['logout'] -> true 전환
+// 로그인 상태 true -> 세션 파괴 조건 포함
+    if(isset($_POST['logout']) && $_POST['logout']){
+        if(isset($_SESSION['login']) && $_SESSION['login']){
+            $_SESSION = array();
+            session_destroy();
+        }
+    }
+?>
 <!------------------------------------------ 로그인 화면 ----------------------------------------------->
+<?php if(!$_SESSION['login']):?>
 <form action="login_process.php" method="post" autocomplete="off">
     <div id="loginBox">
         <div><h1>로그인</h1></div>
-        <div id="userInfo">
+        <div id="inputInfo">
             <div class="row">
                 <div class="head">ID</div>
                 <div><input type="text" name="id"></div>
@@ -91,7 +105,18 @@ if ($total_page < $end_page) $end_page = $total_page;
     </div>
 </form>
 <!-------------------------------------------- 세션 처리 ------------------------------------------------>
-
+<?php else:?>
+    <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+        <div id="loginBox">
+            <div><h1>회원 정보</h1></div>
+            <div id="userInfo">
+                <h2>&nbsp;안녕하세요,<br>&nbsp;<?= $_SESSION['userName']." 님 환영합니다."; ?></h2>
+            </div>
+            <input type="hidden" name="logout" value="true">
+            <div id="logoutBtn"><input id="logout" type="submit" value="로그아웃"></div>
+        </div>
+    </form>
+<?php endif;?>
 <?php
 $mysql = "SELECT * FROM mybulletin WHERE board_pid = 0";
 $mysql = ($searchMode == true ? $mysql . " AND {$fieldSet} " : $mysql);
@@ -184,7 +209,10 @@ $result = $conn->query($mysql);
     </div>
     <!-------------------------------------------------------------------------------------------------------->
     <div id="ctrl">
-        <button class="button brown" onclick="location.href='write.php'">글쓰기</button>
+        <?php
+        if($_SESSION['login'])
+            echo "<button class=\"button brown\" onclick=\"location.href='write.php'\">글쓰기</button>";
+        ?>
         <?php
         if ($searchMode)
             echo "<button class=\"button all\" onclick=\"location.href='list.php'\">전체보기</button>";

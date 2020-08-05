@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once('db_conf.php');
 $board_id = $_GET['board_id'];
 
@@ -11,133 +13,7 @@ $row = $result->fetch_assoc();
 <html lang="en">
 <head>
     <title>글보기</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
-
-        * {
-            margin: 0 auto;
-            padding: 0;
-        }
-
-        body {
-            background-color: #dbe9b7;
-        }
-
-        h1 {
-            border-bottom: 1px solid #ababab;
-            padding: 10px;
-            margin-bottom: 20px;
-            box-sizing: border-box;
-        }
-
-        #viewBox {
-            width: 600px;
-            height: auto;
-            margin-top: 80px;
-            padding: 20px;
-            background-color: #fdfdf6;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, .4);
-            font-family: 'Jua', sans-serif;
-            overflow: hidden;
-        }
-
-        .row {
-            padding: 10px 0;
-
-        }
-
-        .head {
-            color: #838383;
-            padding: 2px;
-            font-size: 20px;
-        }
-
-        .input {
-            vertical-align: middle;
-            font-size: 25px;
-        }
-
-        #ctrl {
-            text-align: center;
-            margin: 30px auto;
-
-        }
-
-        .button {
-            color: black;
-            font-size: 18px;
-            border-radius: 3px;
-            display: inline-block;
-            padding: 1px 8px 3px;
-            margin: 0 4px;
-            vertical-align: middle;
-            cursor: pointer;
-            font-family: 'Jua', sans-serif;
-        }
-
-        .white {
-            border: 1px solid #b8b2a6;
-            background-color: white;
-        }
-
-        .white:hover {
-            background-color: #e8e4e1;
-        }
-
-        .brown {
-            border: 1px solid #b8b2a6;
-            background-color: #b8b2a6;
-        }
-
-        .brown:hover {
-            background-color: #b9ac92;
-        }
-
-        input[type=text],
-        input[type=password] {
-            height: 25px;
-        }
-
-        input[type=text],
-        input[type=password],
-        textarea {
-            border-radius: 4px;
-            border: 1px solid #ababab;
-            font-size: 17px;
-            font-family: 'Jua', sans-serif;
-        }
-
-        h3 {
-            margin: 20px auto;
-            text-align: center;
-            border-top: 1px solid #ababab;
-        }
-
-        #inputTable {
-            margin: 0 auto;
-        }
-
-        tr {
-            margin-bottom: 10px;
-        }
-
-        #commTable {
-            width: 600px;
-            margin-top: 20px;
-            border: 1px solid black;
-        }
-
-        th {
-            background-color: #b8b2a6;
-            height: 25px;
-        }
-
-        #commTable td {
-            text-align: center;
-            height: 30px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/view.css">
 </head>
 <body>
 <div id="viewBox">
@@ -159,11 +35,17 @@ $row = $result->fetch_assoc();
             <div class="head">내용</div>
             <div class="input"><?= $row['content'] ?></div>
         </div>
+<!--        *버튼 기능
+            - 현재 로그인한 사용자의 게시물을 볼 경우 모두 구현
+            - 다른 사용자이거나 미 로그인 사용자이 게시물을 볼 경우 '목록보기'만! 구현-->
         <div id="ctrl">
+        <?php
+            if($row['user_name'] === $_SESSION['userId']):?>
             <input class="button brown" type="submit" value="수정하기"
                    formaction="modify.php?board_id=<?= $row['board_id'] ?>">
-            <input class="button brown" type="submit" value="삭제하기" formaction="delete.php">
+            <input class="button brown" type="submit" value="삭제하기" formaction="delete_process.php">
             <input type="hidden" name="board_id" value="<?=$row['board_id']?>">
+            <?endif;?>
             <input class="button white" type="submit" value="목록보기" formaction="list.php">
         </div>
     </form>
@@ -173,17 +55,20 @@ $row = $result->fetch_assoc();
     $mysql = "SELECT * FROM mybulletin WHERE board_pid = $board_id";
     $conn = connectDB();
     $result = $conn->query($mysql);
+    $row = $result->fetch_assoc();
     ?>
     <!--입력 테이블-->
-    <form action="comment_write.php" method="post" autocomplete="off">
+<!--미 로그인 사용자일 경우 댓글 달기 불가능-->
+    <div><h3>COMMENT</h3></div>
+    <?php if($_SESSION['login']):?>
+        <form action="comment_write.php" method="post" autocomplete="off">
         <input type="hidden" name="board_id" value="<?= $board_id ?>">
-        <div><h3>COMMENT</h3></div>
         <table id="inputTable">
             <tr>
-                <td>작성자&nbsp;</td>
-                <td><input type="text" name="commName"></td>
-                <td class="row">&nbsp;&nbsp;비밀번호&nbsp;</td>
-                <td><input type="password" name="commPasswd"></td>
+<!--                <td>작성자&nbsp;</td>-->
+                <td><input type="hidden" name="commName" value="<?=$_SESSION['userId']?>"></td>
+<!--                <td class="row">&nbsp;&nbsp;비밀번호&nbsp;</td>-->
+<!--                <td><input type="password" name="commPasswd"></td>-->
             </tr>
             <tr>
                 <td>코멘트</td>
@@ -195,6 +80,7 @@ $row = $result->fetch_assoc();
             </tr>
         </table>
     </form>
+    <?endif;?>
     <!--출력 테이블-->
     <table id="commTable">
         <tr>
@@ -209,8 +95,11 @@ $row = $result->fetch_assoc();
             echo "<td>" . $row['user_name'] . "</td>";
             echo "<td>" . $row['content'] . "</td>";
             echo "<td>" . date_format(date_create($row['reg_date']), 'Y-m-d') . "</td>";
-            echo "<td><a href='delete.php?board_id=".$row['board_id']."&board_pid=".$row['board_pid']."'>
+//            echo "<td><a href='delete.php?board_id=".$row['board_id']."&board_pid=".$row['board_pid']."'>
+            if($row['user_name'] === $_SESSION['userId']) {
+                echo "<td><a href='delete_process.php?board_id=" . $row['board_id'] . "&board_pid=" . $row['board_pid'] . "'>
                   <img src=\"trashbin.png\" width=\"20px\" height=\"25px\"></a></td>";
+            }
             echo "</tr>";
         }
         ?>
