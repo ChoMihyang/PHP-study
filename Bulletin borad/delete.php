@@ -1,4 +1,9 @@
 <?php
+session_start();
+// 미 로그인 사용자 접근 시 에러 메시지 출력
+if (!isset($_SESSION['login']) || !$_SESSION['login'])
+    echo "<script>alert('로그인 후 이용 가능합니다.')</script>";
+
 require_once('db_conf.php');
 // 게시물 삭제로부터 전송된 글 번호
 $board_id = $_POST['board_id'];

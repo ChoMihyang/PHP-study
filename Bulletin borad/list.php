@@ -83,6 +83,7 @@ if ($total_page < $end_page) $end_page = $total_page;
         if(isset($_SESSION['login']) && $_SESSION['login']){
             $_SESSION = array();
             session_destroy();
+            echo "<script>alert('로그아웃 되었습니다.');</script>";
         }
     }
 ?>

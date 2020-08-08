@@ -65,16 +65,11 @@ $row = $result->fetch_assoc();
         <input type="hidden" name="board_id" value="<?= $board_id ?>">
         <table id="inputTable">
             <tr>
-<!--                <td>작성자&nbsp;</td>-->
                 <td><input type="hidden" name="commName" value="<?=$_SESSION['userId']?>"></td>
-<!--                <td class="row">&nbsp;&nbsp;비밀번호&nbsp;</td>-->
-<!--                <td><input type="password" name="commPasswd"></td>-->
             </tr>
             <tr>
                 <td>코멘트</td>
                 <td colspan="3"><textarea name="commContent" cols="49" rows="3"></textarea></td>
-            </tr>
-            <tr>
                 <td colspan="4" style="text-align: center;">
                     <input class="white button" type="submit" value="댓글달기"></td>
             </tr>

@@ -2,10 +2,7 @@
 // 미 로그인 사용자 접근 시 에러 메시지 출력
 if(!isset($_SESSION['login']) || !$_SESSION['login'])
     echo "<script>alert('로그인 후 이용 가능합니다.')</script>";
-var_dump($_SESSION['login']);
-echo $_SESSION['userId'];
-echo $_SESSION['userName'];?>
-
+?>
 
 <!DOCTYPE HTML>
 <html lang="en">
@@ -22,10 +19,6 @@ echo $_SESSION['userName'];?>
         <div style="font-size: 20px"><?php echo $_SESSION['userId']?></div>
         <input type="hidden" name="name" value="<?= $_SESSION['userId']?>">
     </div>
-<!--    <div class="row">-->
-<!--        <div class="head">비밀번호</div>-->
-<!--        <div class="input"><input type="password" id="inputPw" name="password"></div>-->
-<!--    </div>-->
     <div class="row">
         <div class="head">제목</div>
         <div class="input"><input type="text" id="inputTitle" name="title"></div>

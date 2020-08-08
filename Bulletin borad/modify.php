@@ -27,10 +27,6 @@ $row = $result->fetch_assoc();
             <input type="hidden" name="name" value="<?=$_SESSION['userId']?>">
             <div class="input" style="font-size: 20px"><?=$_SESSION['userId']?></div>
         </div>
-<!--        <div class="row">-->
-<!--            <div class="head">비밀번호</div>-->
-<!--            <div class="input"><input type="password" id="inputPw" name="password" placeholder="*본인 확인을 위해 비밀번호를 입력해 주세요."></div>-->
-<!--        </div>-->
         <div class="row">
             <div class="head">제목</div>
             <div class="input"><input type="text" id="inputTitle" name="title" value="<?=$row['title']?>"</div>
