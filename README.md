@@ -43,3 +43,18 @@ bulletin board : Login Module Update
     - login_process.php
 ```
 - style 태그 제거 후 CSS 파일로 이동
+
+###2020-08-09(토) 
+
+#####로그인 모듈 업데이트
+
+- list.php 내 로그인, 로그아웃 기능 구현
+
+- 로그인 시 login_process.php 이동
+    - session_start();
+
+- 미 로그인 사용자와 로그인 사용자 기능 구분
+    - 글쓰기 / 댓글 달기
+
+- 본인 작성 글 기능 구분
+    - 글 수정 / 글 삭제 / 댓글 삭제
