@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+
+body {
+    background-color: #dbe9b7;
+}
+
+h1 {
+    border-bottom: 1px solid #ababab;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+#viewBox {
+    width: 600px;
+    height: auto;
+    margin-top: 80px;
+    padding: 20px;
+    background-color: #fdfdf6;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+    font-family: 'Jua', sans-serif;
+    overflow: hidden;
+}
+
+.row {
+    padding: 10px 0;
+
+}
+
+.head {
+    color: #838383;
+    padding: 2px;
+    font-size: 20px;
+}
+
+.input {
+    vertical-align: middle;
+    font-size: 25px;
+}
+
+#ctrl {
+    text-align: center;
+    margin: 30px auto;
+
+}
+
+.button {
+    color: black;
+    font-size: 18px;
+    border-radius: 3px;
+    display: inline-block;
+    padding: 1px 8px 3px;
+    margin: 0 4px;
+    vertical-align: middle;
+    cursor: pointer;
+    font-family: 'Jua', sans-serif;
+}
+
+.white {
+    border: 1px solid #b8b2a6;
+    background-color: white;
+}
+
+.white:hover {
+    background-color: #e8e4e1;
+}
+
+.brown {
+    border: 1px solid #b8b2a6;
+    background-color: #b8b2a6;
+}
+
+.brown:hover {
+    background-color: #b9ac92;
+}
+
+input[type=text],
+input[type=password] {
+    height: 25px;
+}
+
+input[type=text],
+input[type=password],
+textarea {
+    border-radius: 4px;
+    border: 1px solid #ababab;
+    font-size: 17px;
+    font-family: 'Jua', sans-serif;
+}
+
+h3 {
+    margin: 20px auto;
+    text-align: center;
+    border-top: 1px solid #ababab;
+}
+
+#inputTable {
+    /*margin: 0 30px;*/
+}
+
+tr {
+    margin-bottom: 10px;
+}
+
+#commTable {
+    width: 600px;
+    margin-top: 20px;
+    border: 1px solid black;
+}
+
+th {
+    background-color: #b8b2a6;
+    height: 25px;
+}
+
+#commTable td {
+    text-align: center;
+    height: 30px;
+}

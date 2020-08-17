@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap');
+
+* {
+    margin: 0 auto;
+    padding: 0;
+}
+
+body {
+    background-color: #dbe9b7;
+}
+
+h1 {
+    border-bottom: 1px solid #ababab;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+#writeBox {
+    width: 600px;
+    height: 600px;
+    margin-top: 80px;
+    padding: 20px;
+    background-color: #fdfdf6;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .4);
+    font-family: 'Jua', sans-serif;
+}
+
+.row {
+    padding: 10px 0;
+}
+
+.head {
+    color: #838383;
+    padding: 2px;
+}
+
+.input {
+    vertical-align: middle;
+}
+
+input[type=text],
+input[type=password],
+textarea {
+    border-radius: 4px;
+    border: 1px solid #ababab;
+    font-size: 18px;
+    font-family: 'Jua', sans-serif;
+}
+
+.input input[id=inputUser],
+.input input[id=inputPw] {
+    width: 90%;
+    height: 30px;
+}
+
+.input input[id=inputTitle] {
+    width: 100%;
+    height: 30px;
+}
+
+textarea {
+    resize: none;
+}
+
+#ctrl {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button {
+    color: black;
+    border-radius: 3px;
+    display: inline-block;
+    padding: 1px 8px 3px;
+    margin: 0 4px;
+    vertical-align: middle;
+    cursor: pointer;
+    font-size: 18px;
+    font-family: 'Jua', sans-serif;
+}
+
+.white {
+    border: 1px solid #b8b2a6;
+    background-color: white;
+}
+
+.white:hover {
+    background-color: #e8e4e1;
+}
+
+.brown {
+    border: 1px solid #b8b2a6;
+    background-color: #b8b2a6;
+}
+
+.brown:hover {
+    background-color: #b9ac92;
+}
