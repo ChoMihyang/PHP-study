@@ -45,9 +45,9 @@ bulletin board : Login Module Update
 - style 태그 제거 후 CSS 파일로 이동
 
 
-###2020-08-08(토) 
+### 2020-08-08(토) 
 
-#####로그인 모듈 업데이트
+##### 로그인 모듈 업데이트
 
 - list.php 내 로그인, 로그아웃 기능 구현
 
@@ -60,8 +60,8 @@ bulletin board : Login Module Update
 - 본인 작성 글 기능 구분
     - 글 수정 / 글 삭제 / 댓글 삭제
     
-###2020-08-09(일)
-#####OOP study
+### 2020-08-09(일)
+##### OOP study
 
 - OOP 구성요소
     - 클래스(Class)와 객체(Object)
